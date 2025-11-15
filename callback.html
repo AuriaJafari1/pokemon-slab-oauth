@@ -30,11 +30,10 @@
           const error = urlParams.get('error');
 
           if (code) {
-              // Redirect back to the iOS app with the authorization code
-              window.location.href = 'com.pokemonslablister://oauth?code=' + code;
+              // URL-encode the authorization code to preserve special characters
+              window.location.href = 'com.pokemonslablister://oauth?code=' + encodeURIComponent(code);
           } else if (error) {
-              // Redirect back to the iOS app with the error
-              window.location.href = 'com.pokemonslablister://oauth?error=' + error;
+              window.location.href = 'com.pokemonslablister://oauth?error=' + encodeURIComponent(error);
           } else {
               document.querySelector('.container').innerHTML =
                   '<h2>❌ Error</h2><p>No authorization code received from eBay.</p>';
